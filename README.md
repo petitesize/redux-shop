@@ -1,10 +1,11 @@
 # react-redux practice
 
-## 다음 기술을 연습하기 위해 만든 간단한 인터넷 쇼핑몰
+##### react-redux 상태관리로 만든 간단한 인터넷 쇼핑몰
 
-## react-redux 상태관리로 만들어졌습니다.
+###### 🔧 사용 기술
 
 - typescript
 - react-redux
 - axios
 - semantic-ui
+  git remote add origin https://github.com/petitesize/redux-shop.git
