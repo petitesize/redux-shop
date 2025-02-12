@@ -1,0 +1,6 @@
+// 1. 먼저 어떤 액션타입을 쓸건지 이름을 지정해준다.
+export enum ActionTypes {
+  SET_PRODUCTS = "SET_PRODUCTS",
+  SELECTED_PRODUCTS = "SELECTED_PRODUCTS",
+  REMOVE_SELECTED_PRODUCTS = "REMOVE_SELECTED_PRODUCTS",
+}
