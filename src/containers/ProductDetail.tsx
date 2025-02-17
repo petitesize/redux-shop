@@ -3,36 +3,25 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
-  ProductAction,
   removeSelectedProduct,
-  selectedProduct,
+  fetchProduct,
 } from "../redux/actions/productActions";
 import { useSelector } from "react-redux";
-import { State } from "../redux/reducers";
+import { AppThunkDispatch, RootState } from "../redux/reducers";
 import { IProduct } from "../redux/reducers/productReducer";
-import { Dispatch } from "redux";
 
 const ProductDetail = () => {
-  const product = useSelector((state: State) => state.product) as IProduct;
+  const product = useSelector((state: RootState) => state.product) as IProduct;
   const { image, title, price, category, description } = product;
   const { productId } = useParams();
-  const dispatch = useDispatch<Dispatch<ProductAction>>();
-  const fetchProductDetail = async () => {
-    const res = await axios
-      .get(`https://fakestoreapi.com/products/${productId}`)
-      .catch((err) => console.log("err: ", err));
-
-    if (res && res.data) {
-      dispatch(selectedProduct(res.data));
-    }
-  };
+  const dispatch: AppThunkDispatch = useDispatch();
 
   //   여기 설명! 왜 처음 상세페이지 진입 시에 remove 액션이 실행되는지?
   // 1. 페이지 이동 시 useEffect 실행
   // 2. productId 유효할 시, productId 설정
   // 3. 의존성 배열에 productId가 있으므로 useEffect 재실행되면서 진입 시 useEffect가 정리되기 때문에
   useEffect(() => {
-    if (productId && productId !== "") fetchProductDetail();
+    if (productId && productId !== "") dispatch(fetchProduct(productId));
     return () => {
       dispatch(removeSelectedProduct());
     };
