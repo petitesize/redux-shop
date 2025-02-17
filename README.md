@@ -8,4 +8,3 @@
 - react-redux
 - axios
 - semantic-ui
-  git remote add origin https://github.com/petitesize/redux-shop.git
